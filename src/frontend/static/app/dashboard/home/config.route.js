@@ -15,7 +15,7 @@
         return{
             name: 'home',
             url: '/home',
-            templateUrl: 'javascript/dashboard/home/home.html',
+            templateUrl: 'app/dashboard/home/home.html',
             controller: 'DashboardHomeController',
             controllerAs: 'cm',
             parent: 'dashboard'

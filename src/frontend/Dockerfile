@@ -25,7 +25,7 @@ Add . frontend
 RUN cp /frontend/nginx/nginx.conf /etc/nginx/nginx.conf
 RUN cp /frontend/scripts/runserver /usr/local/bin/ && chmod u+x,g+x /usr/local/bin/runserver && sed -i -e 's/\r$//' /usr/local/bin/runserver
 RUN cp /frontend/scripts/make_ssl_cert /usr/local/bin/ && chmod u+x,g+x /usr/local/bin/make_ssl_cert && sed -i -e 's/\r$//' /usr/local/bin/make_ssl_cert
-RUN chmod -R +rx /frontend/static/javascript/lib
+RUN chmod -R +rx /frontend/static/app/lib
 RUN make_ssl_cert
 
 # Expose ports

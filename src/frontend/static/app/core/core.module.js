@@ -5,7 +5,8 @@
         // angular modules
         //'ngAnimate', 'ngSanitize',
         // block modules
-        'blocks.exception', 'blocks.logger', 'blocks.router'
+        'blocks.exception', 'blocks.logger', 'blocks.router',
         // 3rd party modules
+        'uiRouterStyles'
     ]);
 })();

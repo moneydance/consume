@@ -1,7 +1,7 @@
 (function() {
 
     angular
-        .module('consume.dashboard')
+        .module('consume.login')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -14,11 +14,13 @@
     function getStates()
     {
         return{
-            name: 'dashboard',
-            templateUrl: '/javascript/dashboard/dashboard.html',
-            controller: 'DashboardController',
+            name: 'login',
+            url: '/login',
+            templateUrl: 'app/login/login.html',
+            controller: 'LoginController',
             controllerAs: 'vm'
         };
     }
 })();
+
 
