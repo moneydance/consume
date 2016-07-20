@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="consume">
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consume</title>
+
+    <!-- CSS -->
+    <link data-require="bootstrap@3.3.6" data-semver="3.3.6" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="">
+</head>
+<body >
+
+    <div id="main" class="full">
+        <div ui-view class="full">
+
+        </div>
+    </div>
+
+    <!-- Javascript -->
+
+    <!-- LIB:js -->
+    <script src="/javascript/lib/angular.js"></script>
+    <script data-require="jquery@1.11.3" data-semver="2.1.4" src="//code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="/javascript/lib/angular-ui-router.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+    <script src="/javascript/lib/physicsjs-full.js"></script>
+
+    <!-- app:js -->
+    <script src="/javascript/app.module.js"></script>
+
+    <!-- blocks:js -->
+    <script src="/javascript/blocks/exception/exception.module.js"></script>
+    <script src="/javascript/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/javascript/blocks/exception/exception.js"></script>
+    <script src="/javascript/blocks/logger/logger.module.js"></script>
+    <script src="/javascript/blocks/logger/logger.js"></script>
+    <script src="/javascript/blocks/router/router.module.js"></script>
+    <script src="/javascript/blocks/router/routerhelper.js"></script>
+    <!-- core:js -->
+    <script src="/javascript/core/core.module.js"></script>
+    <script src="/javascript/core/constants.js"></script>
+    <script src="/javascript/core/config.js"></script>
+    <!-- dashboard:js -->
+    <script src="/javascript/login/login.module.js"></script>
+    <script src="/javascript/login/login.controller.js"></script>
+    <script src="/javascript/login/config.route.js"></script>
+    <!-- dashboard:js -->
+    <script src="/javascript/dashboard/dashboard.module.js"></script>
+    <script src="/javascript/dashboard/dashboard.controller.js"></script>
+    <script src="/javascript/dashboard/config.route.js"></script>
+</body>
+</html>

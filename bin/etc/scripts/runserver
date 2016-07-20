@@ -1,0 +1,20 @@
+#! /bin/bash
+
+NAME="consume"
+APP="$1"
+
+if [ "$APP" == "Frontend" ]; then
+    ENV="$2"
+    if [ "$ENV" != "Develop" ] && [ "$ENV" != "Production" ]; then                       # check if parameter given
+        echo "Please provide secondary argument Develop or Production!"              # echo error message
+    else
+        echo "Starting $NAME $APP!"
+        export APP
+        export ENV
+        cd /web_app/ws   .                                                               # get to project
+        service nginx start                                                              # start nginx
+        http-server
+    fi
+else
+    echo "Please provide primary argument API or Frontend!"                          # echo error message
+fi

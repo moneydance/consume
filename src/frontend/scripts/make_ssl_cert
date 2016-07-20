@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+mkdir -p /etc/ssl/certs
+mkdir -p /etc/ssl/private
+
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 \
+    -keyout /etc/ssl/private/myssl.key \
+    -out /etc/ssl/certs/myssl.crt <<EOF
+US
+Boston
+
+Consume
+Dev
+Consume.com
+
+EOF

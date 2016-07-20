@@ -1,0 +1,13 @@
+#! /bin/bash
+
+NAME="consume"
+ENV="$1"
+if [ "$ENV" != "Develop" ] && [ "$ENV" != "Production" ]; then                       # check if parameter given
+    echo "Please provide secondary argument Develop or Production!"              # echo error message
+else
+    echo "Starting $NAME Frontend!"
+    export ENV
+    cd /frontend   .                                                               # get to project
+    service nginx start                                                              # start nginx
+fi
+
