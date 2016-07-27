@@ -1,0 +1,77 @@
+.wf-loading * {
+    visibility: hidden;
+}
+
+.wf-active * {
+    visibility: visible;
+}
+
+
+.gold:hover {
+    color:#D5AD6D; /*if no support for background-clip*/
+    background: -webkit-linear-gradient(transparent, transparent),
+        -webkit-linear-gradient(top, rgba(213,173,109,1) 0%, rgba(213,173,109,1) 26%,
+        rgba(226,186,120,1) 35%, rgba(163,126,67,1) 45%, rgba(145,112,59,1) 61%, rgba(213,173,109,1) 100%);
+    background: -o-linear-gradient(transparent, transparent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-border-image: -webkit-linear-gradient(top, rgba(213,173,109,1) 0%, rgba(213,173,109,1) 26%,
+        rgba(226,186,120,1) 35%, rgba(163,126,67,1) 45%, rgba(145,112,59,1) 61%, rgba(213,173,109,1) 100%);
+    border-image-slice: 1;
+    transition:3s;
+}
+
+.circle {
+    -webkit-transition: all 0.6s ease-in-out;
+}
+
+.circle:hover {
+    border-radius: 50%;
+}
+
+
+.reveal-animation.ng-enter {
+    -webkit-animation: Fade-Enter-Anime 6s;
+    -moz-animation: Fade-Enter-Anime 6s;
+    animation: Fade-Enter-Anime 6s;
+}
+.reveal-animation.ng-leave {
+    -webkit-animation: Fade-Leave-Anime 6s;
+    -moz-animation: Fade-Leave-Anime 6s;
+    animation: Fade-Leave-Anime 6s;
+}
+
+
+@keyframes Fade-Enter-Anime {
+    from { opacity: 0; }
+    to { opacity: 1; }
+ }
+
+@keyframes Fade-Leave-Anime {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+@-webkit-keyframes Fade-Enter-Anime {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@-webkit-keyframes Fade-Leave-Anime {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@-moz-keyframes Fade-Enter-Anime {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@-moz-keyframes Fade-Leave-Anime {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+

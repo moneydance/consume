@@ -2,6 +2,7 @@
     'use strict';
 
     angular
-        .module('consume.core')
+        .module('blocks.logger')
         .constant("toastr", toastr);
 })();
+

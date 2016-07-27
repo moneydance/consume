@@ -8,16 +8,16 @@
     <title>Consume</title>
 
     <!-- CSS -->
-    <link data-require="bootstrap@3.3.6" data-semver="3.3.6" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://use.typekit.net/sid2mxi.js"></script>
+    <script>try{Typekit.load({async: false});}catch(e){}</script>
+    <link rel="stylesheet" href="/app/base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <div ui-router-styles>
     </div>
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="">
 </head>
-<body >
+<body>
 
     <div id="main" class="full">
         <div ui-view class="full">
@@ -28,12 +28,13 @@
     <!-- Javascript -->
 
     <!-- LIB:js -->
-    <script src="/app/lib/angular.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular.js"></script>
     <script data-require="jquery@1.11.3" data-semver="2.1.4" src="//code.jquery.com/jquery-2.1.4.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
     <script src="/app/lib/angular-ui-router.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-animate.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
     <script src="/app/lib/angular-ui-router-styles.js"></script>
+    <script src="/app/lib/physicsjs-full.min.js"></script>
     <!-- app:js -->
     <script src="/app/app.module.js"></script>
 
@@ -42,12 +43,18 @@
     <script src="/app/blocks/exception/exception-handler.provider.js"></script>
     <script src="/app/blocks/exception/exception.js"></script>
     <script src="/app/blocks/logger/logger.module.js"></script>
+    <script src="/app/blocks/logger/logger.constants.js"></script>
     <script src="/app/blocks/logger/logger.js"></script>
     <script src="/app/blocks/router/router.module.js"></script>
     <script src="/app/blocks/router/routerhelper.js"></script>
+    <script src="/app/blocks/animation/animation.module.js"></script>
+    <script src="/app/blocks/animation/animation.animate_on_load.js"></script>
+    <script src="/app/blocks/physics/physics.module.js"></script>
+    <script src="/app/blocks/physics/physics.constants.js"></script>
+    <script src="/app/blocks/physics/physics.js"></script>
+
     <!-- core:js -->
     <script src="/app/core/core.module.js"></script>
-    <script src="/app/core/constants.js"></script>
     <script src="/app/core/config.js"></script>
     <!-- login:js -->
     <script src="/app/login/login.module.js"></script>
@@ -61,5 +68,10 @@
     <script src="/app/dashboard/home/dashboard.home.module.js"></script>
     <script src="/app/dashboard/home/dashboard.home.controller.js"></script>
     <script src="/app/dashboard/home/config.route.js"></script>
+    <!-- dashboard.code:js -->
+    <script src="/app/dashboard/code/dashboard.code.module.js"></script>
+    <script src="/app/dashboard/code/dashboard.code.controller.js"></script>
+    <script src="/app/dashboard/code/config.route.js"></script>
+
 </body>
 </html>

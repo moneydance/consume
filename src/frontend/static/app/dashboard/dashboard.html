@@ -1,4 +1,13 @@
-<p> hey </p>
-<section>
-        <div ui-view></div>
-</section>
+<div class="flex-container">
+    <div class="dashboard reveal-animation" animate-on-load>
+        <div class="row-flex flex-wrap flex-center-x">
+            <div class="column-flex flex-center-y" ng-repeat="x in vm.dashboard_links" >
+                <span class="circle" ui-sref="dashboard.{{x.title}}"> {{x.title}} </span>
+            </div>
+        </div>
+    </div>
+    <div class="main flex-center-y flex-center-x">
+        <section  ui-view>
+        </section>
+    </div>
+</div>

@@ -19,7 +19,7 @@
             controller: 'DashboardController',
             controllerAs: 'vm',
             data: {
-                css: '/app/dashboard/dashboard.css'
+                css: 'app/dashboard/dashboard.css'
             }
         };
     }

@@ -3,9 +3,8 @@
 
     angular.module('consume.core', [
         // angular modules
-        //'ngAnimate', 'ngSanitize',
         // block modules
-        'blocks.exception', 'blocks.logger', 'blocks.router',
+        'blocks.exception', 'blocks.logger', 'blocks.router', 'blocks.animation', 'blocks.physics',
         // 3rd party modules
         'uiRouterStyles'
     ]);
