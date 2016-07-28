@@ -7,8 +7,8 @@
 
     DashboardController.$inject = ['logger'];
     function DashboardController(logger) {
-        var vm = this;
-        vm.dashboard_links = [
+        var dashboardVm = this;
+        dashboardVm.dashboard_links = [
             {'title': 'home'},
             {'title': 'about'},
             {'title': 'code'},

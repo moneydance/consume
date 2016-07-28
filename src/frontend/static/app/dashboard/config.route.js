@@ -17,7 +17,7 @@
             name: 'dashboard',
             templateUrl: '/app/dashboard/dashboard.html',
             controller: 'DashboardController',
-            controllerAs: 'vm',
+            controllerAs: 'dashboardVm',
             data: {
                 css: 'app/dashboard/dashboard.css'
             }

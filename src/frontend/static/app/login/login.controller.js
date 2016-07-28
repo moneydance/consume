@@ -7,7 +7,7 @@
 
     LoginController.$inject = ['logger'];
     function LoginController(logger) {
-        var vm = this;
+        var loginVm = this;
         logger.success("shit works");
     }
 })();

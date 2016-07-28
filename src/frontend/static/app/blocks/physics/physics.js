@@ -4,33 +4,36 @@
     angular
         .module('blocks.physics')
         .factory('world', world)
-        .factory('ticker', ticker)
         .factory('scale', scale)
         .directive("physicsCanvas", physicsCanvas)
         .directive("physicsEdgeDetection", physicsEdgeDetection)
         .directive("physicsCircles", physicsCircles);
 
+    var colors = ['#FFBFC2', '#76D5BB', '#9ACFE3',
+            '#BC8C1C', '#AB004F', '#7EAA9F', '#F8DE79', '#898883'];
+
     world.$inject = ['Physics'];
     function world(Physics)
     {
-        var world = Physics();
-        world.on('step', function() {
+        function newWorld()
+        {
+            var world = Physics();
+            world.on('step', function() {
                 world.render();
             });
-        return world;
-    }
+            return world;
+        }
 
-    ticker.$inject = ['Physics', 'world'];
-    function ticker(Physics, world)
-    {
-        function start()
+        function start(world)
         {
             Physics.util.ticker.on(function (time) {
                 world.step(time);
             });
-            Physics.util.ticker.start()
+            Physics.util.ticker.start();
         }
+
         return {
+            newWorld: newWorld,
             start: start
         };
     }
@@ -45,137 +48,189 @@
 
         return {
             s: s
-        }
+        };
     }
 
-
-
-    physicsCanvas.$inject = ['Physics', 'world', 'ticker', '$window'];
-    function physicsCanvas (Physics, world, ticker, $window)
+    physicsCanvas.$inject = ['Physics', 'world', '$window', '$rootScope'];
+    function physicsCanvas (Physics, world, $window, $rootScope)
     {
         return {
+            scope: {},
             restrict: "E",
             transclude: true,
-            template: "<canvas height={{height}} width={{width}}></canvas><div ng-transclude></div>",
+            template: "<canvas height={{canvasVm.height}} width={{canvasVm.width}}></canvas><div ng-transclude></div>",
+            controller: physicsCanvasController,
+            controllerAs: 'canvasVm',
             link: createCanvas
         };
 
-        function createCanvas (scope, element)
+        function physicsCanvasController()
         {
+            var canvasVm = this;
+            canvasVm.w = world.newWorld();
+            canvasVm.width = $window.innerWidth;
+            canvasVm.height = $window.innerHeight;
+        }
+
+        function createCanvas (scope, element, attr, canvasVm)
+        {
+            scope.$on('$destroy', function () {
+                canvasVm.w = canvasVm.w.destroy();
+                console.log(canvasVm.w);
+                console.log('alert scope destroyed');
+            });
             var canvas = element.find("canvas");
-            var width = $window.innerWidth;
-            var height = $window.innerHeight;
-            scope.height = height;
-            scope.width = width;
-            console.log(width);
             var renderer = Physics.renderer('canvas', {
                 el: canvas[0],
-                width: width,
-                height: height
+                width: canvasVm.width,
+                height: canvasVm.height
             });
-            world.add(renderer);
+            canvasVm.w.add(renderer);
             canvas.attr("style", "");
-            ticker.start();
+            world.start(canvasVm.w);
         }
     }
 
-    physicsEdgeDetection.$inject = ['Physics', 'world', '$window'];
-    function physicsEdgeDetection (Physics, world, $window) {
+    physicsEdgeDetection.$inject = ['Physics', '$window'];
+    function physicsEdgeDetection (Physics, $window)
+    {
         return {
             restrict: "E",
             scope: {
                 restitution: "@"
             },
+            require: '^physicsCanvas',
             link: link
         };
 
-        function link (scope) {
-                var maxY = $window.innerHeight;
-                var maxX = $window.innerWidth;
-                var bounds = Physics.aabb(0,
-                    0,
-                    maxX,
-                    maxY);
-                world.add(Physics.behavior('edge-collision-detection', {
-                    aabb: bounds,
-                    restitution: parseFloat(scope.restitution)
-                }));
+        function link (scope, element, attr, canvasVm)
+        {
+            var world = canvasVm.w;
+            var maxY = canvasVm.height;
+            var maxX = canvasVm.width;
+            var bounds = Physics.aabb(0,
+                0,
+                maxX,
+                maxY);
+            world.add(Physics.behavior('edge-collision-detection', {
+                aabb: bounds,
+                restitution: parseFloat(scope.restitution)
+            }));
         }
     }
 
-    physicsCircles.$inject = ['Physics', 'world', '$window', 'scale'];
-    function physicsCircles(Physics, world, $window, scale)
+    physicsCircles.$inject = ['Physics', '$window', 'scale'];
+    function physicsCircles(Physics, $window, scale)
     {
-        Circle.prototype.colors = ['#FFBFC2', '#76D5BB', '#9ACFE3', '#BC8C1C', '#AB004F', '#7EAA9F', '#F8DE79', '#898883'];
         return {
+            scope: {},
             restrict: "E",
+            require: '^physicsCanvas',
             link: link
         };
 
-        function Circle(width, height)
+        function Circle(width, height, hidden)
         {
-            var color = Math.floor(Math.random() * this.colors.length);
-            var radius = scale.s(Math.floor(Math.random() * 80) + 20);
-            this.c = Physics.body('circle', {
-                x: Math.random() * width,
-                y: height + (radius * 2),
-                vy: -.03,
-                radius: radius,
-                mass: 1,
-                restitution: 0.5,
-                styles: {
-                    strokeStyle: this.colors[color],
-                    fillStyle: this.colors[color],
-                    lineWidth: 1
-                }
-            });
+            this.c = newCircle();
             this.setTimeStamp = setTimeStamp;
             this.time_stamp;
 
-            function setTimeStamp(time, lambda){
+            function newCircle()
+            {
+                var color = Math.floor(Math.random() * colors.length);
+                var radius = scale.s(Math.floor(Math.random() * 80) + 20);
+                var y;
+                if (hidden)
+                {
+                    y = height + (radius * 2);
+                }
+                else
+                {
+                    y = Math.random() * height;
+                }
+                return Physics.body('circle', {
+                    x: Math.random() * width,
+                    y: y,
+                    vy: -0.03,
+                    radius: radius,
+                    mass: 1,
+                    restitution: 0.5,
+                    styles: {
+                        strokeStyle: colors[color],
+                        fillStyle: colors[color],
+                        lineWidth: 1
+                    }
+                });
+            }
+
+            function setTimeStamp(time, lambda)
+            {
                 this.time_stamp = time + nextExponential(lambda);
             }
 
             function nextExponential(lambda)
             {
-            var Y = Math.random();
-            var x = (- Math.log(1.0-Y))/lambda;
-            return Math.round(x);
+                var Y = Math.random();
+                var x = (- Math.log(1.0-Y))/lambda;
+                return Math.round(x);
             }
         }
 
-        function link(scope)
+        function link(scope, element, attr, canvasVm)
         {
+            var world = canvasVm.w;
             var step = 0;
-            var height = $window.innerHeight;
-            var width = $window.innerWidth;
-            var queued = new Circle(width, height);
-            queued.setTimeStamp(step, .006);
+            var last_reset = 0;
+            var height = canvasVm.height;
+            var width = canvasVm.width;
             var active_circles = [];
+            initCircles();
+            var queued = new Circle(width, height, true);
+            queued.setTimeStamp(step, 0.006);
             world.on('step', onStep);
 
-            function resetCircles () {
+            function initCircles ()
+            {
+                var l = 10;
+                while (l--)
+                {
+                    var c = new Circle(width, height, false);
+                    world.add(c.c);
+                    active_circles.push(c);
+                }
+            }
+
+            function resetCircles ()
+            {
                 var b;
                 var l = active_circles.length;
-                while (l--) {
+                while (l--)
+                {
                     b = active_circles[l]
-                    if (b.c.state.pos.y < -scale.s(600)) {
+                    if (b.c.state.pos.y < -scale.s(600))
+                    {
                         world.removeBody(b.c);
                         active_circles.splice(l, 1);
                     }
                 }
             }
 
-            function onStep() {
+            function onStep()
+            {
                 step++;
+                last_reset++;
                 if (queued.time_stamp < step)
                 {
-                active_circles.push(queued);
-                world.add(queued.c);
-                queued = new Circle(width, height);
-                queued.setTimeStamp(step, .006);
+                    active_circles.push(queued);
+                    world.add(queued.c);
+                    queued = new Circle(width, height, true);
+                    queued.setTimeStamp(step, 0.006);
                 }
-                resetCircles();
+                if (last_reset > 200)
+                {
+                    resetCircles();
+                    last_reset = 0;
+                }
             }
         }
     }

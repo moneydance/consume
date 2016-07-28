@@ -17,7 +17,7 @@
             url: '/code',
             templateUrl: 'app/dashboard/code/code.html',
             controller: 'DashboardCodeController',
-            controllerAs: 'cm',
+            controllerAs: 'codeVm',
             parent: 'dashboard',
             data: {
                 css: 'app/dashboard/code/code.css'

@@ -7,7 +7,7 @@
 
     DashboardHomeController.$inject = ['logger'];
     function DashboardHomeController(logger) {
-        var cm = this;
+        var homeVm = this;
     }
 })();
 

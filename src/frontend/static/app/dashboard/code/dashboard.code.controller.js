@@ -7,7 +7,7 @@
 
     DashboardCodeController.$inject = ['logger'];
     function DashboardCodeController(logger) {
-        var cm = this;
+        var codeVm = this;
     }
 })();
 

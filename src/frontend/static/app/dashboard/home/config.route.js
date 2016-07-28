@@ -17,7 +17,7 @@
             url: '/home',
             templateUrl: 'app/dashboard/home/home.html',
             controller: 'DashboardHomeController',
-            controllerAs: 'cm',
+            controllerAs: 'homeVm',
             parent: 'dashboard',
             data: {
                 css: 'app/dashboard/home/home.css'
