@@ -15,27 +15,33 @@
     world.$inject = ['Physics'];
     function world(Physics)
     {
-        function newWorld()
+        function World()
         {
-            var world = Physics();
-            world.on('step', function() {
-                world.render();
+            var worldModel = this;
+            worldModel.world = Physics();
+            worldModel.world.on('step', function() {
+                worldModel.world.render();
             });
-            return world;
-        }
+            worldModel.start = start;
+            worldModel.stop = stop;
 
-        function start(world)
-        {
-            Physics.util.ticker.on(function (time) {
-                world.step(time);
-            });
-            Physics.util.ticker.start();
-        }
+            function step(time) {
+                worldModel.world.step(time);
+            }
 
-        return {
-            newWorld: newWorld,
-            start: start
-        };
+            function start()
+            {
+                Physics.util.ticker.on(step);
+                Physics.util.ticker.start();
+            }
+
+            function stop()
+            {
+                Physics.util.ticker.off(step);
+                Physics.util.ticker.stop();
+            }
+        }
+        return World;
     }
 
     scale.$inject = ['$window'];
@@ -67,7 +73,7 @@
         function physicsCanvasController()
         {
             var canvasVm = this;
-            canvasVm.w = world.newWorld();
+            canvasVm.w = new world();
             canvasVm.width = $window.innerWidth;
             canvasVm.height = $window.innerHeight;
         }
@@ -75,9 +81,9 @@
         function createCanvas (scope, element, attr, canvasVm)
         {
             scope.$on('$destroy', function () {
-                canvasVm.w = canvasVm.w.destroy();
-                console.log(canvasVm.w);
-                console.log('alert scope destroyed');
+                canvasVm.w.world = canvasVm.w.world.destroy();
+                canvasVm.w.stop();
+                canvasVm.w = null;
             });
             var canvas = element.find("canvas");
             var renderer = Physics.renderer('canvas', {
@@ -85,9 +91,9 @@
                 width: canvasVm.width,
                 height: canvasVm.height
             });
-            canvasVm.w.add(renderer);
+            canvasVm.w.world.add(renderer);
             canvas.attr("style", "");
-            world.start(canvasVm.w);
+            canvasVm.w.start();
         }
     }
 
@@ -105,7 +111,7 @@
 
         function link (scope, element, attr, canvasVm)
         {
-            var world = canvasVm.w;
+            var world = canvasVm.w.world;
             var maxY = canvasVm.height;
             var maxX = canvasVm.width;
             var bounds = Physics.aabb(0,
@@ -178,7 +184,7 @@
 
         function link(scope, element, attr, canvasVm)
         {
-            var world = canvasVm.w;
+            var world = canvasVm.w.world;
             var step = 0;
             var last_reset = 0;
             var height = canvasVm.height;
