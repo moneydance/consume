@@ -20,7 +20,7 @@
 <body>
 
     <div id="main" class="full">
-        <div ui-view class="full">
+        <div ui-view ng-animate-children="true" class="reveal-animation full">
 
         </div>
     </div>
@@ -28,13 +28,13 @@
     <!-- Javascript -->
 
     <!-- LIB:js -->
-    <script src="https://code.angularjs.org/1.4.4/angular.js"></script>
+     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script data-require="jquery@1.11.3" data-semver="2.1.4" src="//code.jquery.com/jquery-2.1.4.js"></script>
-    <script src="/app/lib/angular-ui-router.min.js"></script>
-    <script src="https://code.angularjs.org/1.4.4/angular-animate.js"></script>
-    <script src ="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="/app/lib/angular-ui-router-styles.js"></script>
-    <script src="/app/lib/physicsjs-full.min.js"></script>
+    <script src="/app/lib/physicsjs-full.js"></script>
     <!-- app:js -->
     <script src="/app/app.module.js"></script>
 

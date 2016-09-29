@@ -4769,9 +4769,9 @@ Physics.geometry.nearestPointOnLine = function nearestPointOnLine( pt, linePt1, 
         // width of viewport
         width: 600,
         // height of viewport
-        height: 600,
+        height: 600
         // automatically resize the renderer
-        autoResize: true
+        //autoResize: true
     };
 
     /** related to: Physics.util.decorator
@@ -4828,11 +4828,6 @@ Physics.geometry.nearestPointOnLine = function nearestPointOnLine( pt, linePt1, 
             this.container = el && el.parentNode ? el.parentNode : document.body;
             this.drawMeta = Physics.util.throttle( Physics.util.bind(this.drawMeta, this), this.options.metaRefresh );
 
-            window.addEventListener('resize', Physics.util.throttle(function(){
-                if ( self.options.autoResize ){
-                    self.resize();
-                }
-            }), 100);
         },
 
         /**

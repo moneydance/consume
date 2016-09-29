@@ -1,3 +1,10 @@
+body {
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    min-height: 700px;
+}
+
 .wf-loading * {
     visibility: hidden;
 }
@@ -6,6 +13,10 @@
     visibility: visible;
 }
 
+.full {
+    height: 100%;
+    width: 100%;
+}
 
 .gold:hover {
     color:#D5AD6D; /*if no support for background-clip*/
@@ -21,24 +32,19 @@
     transition:3s;
 }
 
-.circle {
+.circle-dashboard {
     -webkit-transition: all 0.6s ease-in-out;
 }
 
-.circle:hover {
+.circle-dashboard:hover {
     border-radius: 50%;
 }
 
 
 .reveal-animation.ng-enter {
-    -webkit-animation: Fade-Enter-Anime 6s;
-    -moz-animation: Fade-Enter-Anime 6s;
-    animation: Fade-Enter-Anime 6s;
-}
-.reveal-animation.ng-leave {
-    -webkit-animation: Fade-Leave-Anime 6s;
-    -moz-animation: Fade-Leave-Anime 6s;
-    animation: Fade-Leave-Anime 6s;
+    -webkit-animation: Fade-Enter-Anime 3s !important;
+    -moz-animation: Fade-Enter-Anime 3s !important;
+    animation: Fade-Enter-Anime 3s !important;
 }
 
 
@@ -72,6 +78,3 @@
     from { opacity: 1; }
     to { opacity: 0; }
 }
-
-
-

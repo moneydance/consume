@@ -19,13 +19,14 @@
 .dashboard span {
     margin-top: 10px;
     margin-right: 10px;
-    padding: 8px;
+    padding: 14px;
     border: 2px solid #333;
     color: #333;
-    font-size: 17px;
+    font-size: 24px;
     text-transform: uppercase;
     display: inline-block;
     cursor:pointer;
+    z-index: 99999;
 }
 
 .flex-wrap{
@@ -37,7 +38,6 @@
 
 .flex-container{
     height: 100%;
-    min-height: 650px;
     display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
     display: -ms-flexbox;      /* TWEENER - IE 10 */

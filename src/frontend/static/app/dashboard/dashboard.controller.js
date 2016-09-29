@@ -5,7 +5,7 @@
         .module('consume.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['logger'];
+    DashboardController.$inject = ['$timeout', '$rootElement', 'logger'];
     function DashboardController(logger) {
         var dashboardVm = this;
         dashboardVm.dashboard_links = [
