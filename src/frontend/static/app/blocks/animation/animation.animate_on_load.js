@@ -14,7 +14,7 @@
             flipVm.select = select;
 
             function select(event) {
-                flipVm._parent.select(angular.element(event.currentTarget).parent());
+                flipVm._parent.select(angular.element(event.currentTarget));
             }
         }
 
@@ -37,7 +37,7 @@
                 back: '@',
                 shape: '@'
             },
-            template: '<div class="container" id="{{flipVm.id}}"><div class="front {{flipVm.shape}}" ng-click="flipVm.select($event)">{{flipVm.front}}</div><div class="back {{flipVm.shape}}">{{flipVm.back}}</div></div>',
+            template: '<div id="{{flipVm.id}}"  id="{{flipVm.id}}" class="container front {{flipVm.shape}}" ng-click="flipVm.select($event)">{{flipVm.front}}</div>',
             link: link
         };
     }
@@ -75,8 +75,8 @@
                 }
 
                 function flipadelphia() {
-                    var selectedFront = angular.element(flipManagerVm.selected.children()[0]);
-                    var selectedBack = angular.element(flipManagerVm.selected.children()[1]);
+                    var selectedFront = flipManagerVm.selected;
+                    var selectedBack = "back";
                     for (var i in flipManagerVm.flippers) {
                         var flipper = flipManagerVm.flippers[i];
                         console.log(flipper.attr('id'));
@@ -84,7 +84,7 @@
                             $animate.addClass(flipper, 'no-flex-zone');
                         }
                     }
-                    $animate.addClass(flipManagerVm.selected, 'selected-display');
+                    $animate.removeClass(selectedBack, 'hidden');
                     selectedFront.css({
                         'transform': 'rotateY(180deg)',
                         '-moz-transform': 'rotateY(180deg)',
