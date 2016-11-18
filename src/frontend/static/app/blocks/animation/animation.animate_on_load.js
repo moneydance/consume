@@ -37,7 +37,7 @@
                 back: '@',
                 shape: '@'
             },
-            template: '<div class="container" id = "{{flipVm.id}}"><div class="original {{flipVm.shape}}" ng-click="flipVm.select($event)">{{flipVm.front}} </div> <div class="copy hidden"><div class="copy-front {{flipVm.shape}}">{{flipVm.front}}</div><div class="copy-back {{flipVm.shape}}">{{flipVm.back}}</div></div></div>',
+            template: '<div class="container" id="{{flipVm.id}}"><div class="front {{flipVm.shape}}" ng-click="flipVm.select($event)">{{flipVm.front}}</div><div class="back {{flipVm.shape}}">{{flipVm.back}}</div></div>',
             link: link
         };
     }
@@ -61,34 +61,39 @@
 
             function select(selected_flippy) {
                 flipManagerVm.selected = selected_flippy;
+                var count = 0;
                 for (var i in flipManagerVm.flippers) {
                     var flipper = flipManagerVm.flippers[i];
-                    console.log(flipper.attr('id'));
+                    count++;
                     if (flipper.attr('id') !== flipManagerVm.selected.attr('id')) {
-                        //fuck jqlite dumb theres no selectors like jquery :( looks shit.
-                        var og = angular.element(flipper.children()[0]);
-                        var cp = angular.element(flipper.children()[1]);
-                        if (i < flipManagerVm.flippers.length - 1) {
-                            $animate.addClass(og, 'hidden');
+                        if (count < flipManagerVm.flippers.length - 1) {
+                            $animate.addClass(flipper, 'hidden');
                         } else {
-                            $animate.addClass(og, 'hidden').then(flipadelphia);
+                            $animate.addClass(flipper, 'hidden').then(flipadelphia);
                         }
                     }
                 }
 
                 function flipadelphia() {
-                    var selectedOG = angular.element(flipManagerVm.selected.children()[0]);
-                    var selectedCP = angular.element(flipManagerVm.selected.children()[1]);
-                    var selectedCPFront = angular.element(selectedCP.children()[0]);
-                    var selectedCPBack = angular.element(selectedCP.children()[1]);
-                    $animate.addClass(selectedOG, 'hidden no-transition');
-                    $animate.removeClass(selectedCP, 'hidden');
-                    $animate.addClass(selectedCP, 'selected-display');
-                    selectedCPFront.css({
-                        'transform': 'rotateY(180deg)'
+                    var selectedFront = angular.element(flipManagerVm.selected.children()[0]);
+                    var selectedBack = angular.element(flipManagerVm.selected.children()[1]);
+                    for (var i in flipManagerVm.flippers) {
+                        var flipper = flipManagerVm.flippers[i];
+                        console.log(flipper.attr('id'));
+                        if (flipper.attr('id') !== flipManagerVm.selected.attr('id')) {
+                            $animate.addClass(flipper, 'no-flex-zone');
+                        }
+                    }
+                    $animate.addClass(flipManagerVm.selected, 'selected-display');
+                    selectedFront.css({
+                        'transform': 'rotateY(180deg)',
+                        '-moz-transform': 'rotateY(180deg)',
+                        '-webkit-transform': 'rotateY(180deg)'
                     });
-                    selectedCPBack.css({
-                        'transform': 'rotateY(0deg)'
+                    selectedBack.css({
+                        '-moz-transform': 'rotateY(360deg)',
+                        '-webkit-transform': 'rotateY(360deg)',
+                        'transform': 'rotateY(360deg)'
                     });
                 }
             }

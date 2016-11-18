@@ -1,11 +1,11 @@
-<div class="flex-container full">
+<div class="page-container flex">
     <div class="dashboard" >
-        <div class="row-flex flex-wrap flex-center-x">
-            <div class="column-flex flex-center-y" ng-repeat="x in dashboardVm.dashboard_links" >
+        <div class="flex row-flex flex-wrap flex-center-x">
+            <div ng-repeat="x in dashboardVm.dashboard_links" >
                 <span class="circle-dashboard" ui-sref="dashboard.{{x.title}}"> {{x.title}} </span>
             </div>
         </div>
     </div>
-    <div ui-view class="full reveal-animation main flex-center-y flex-center-x">
+    <div ui-view class="reveal-animation main">
     </div>
 </div>
