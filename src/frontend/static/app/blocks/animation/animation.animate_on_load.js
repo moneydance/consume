@@ -87,7 +87,7 @@
             scope: {},
             controller: flipManagerDirCtrl,
             controllerAs: 'flipManagerVm',
-            template: '<div class="inherit-dim flex row-flex flex-wrap flex-center-x"> <div class="container back {{flipManagerVm.shape}}">{{flipManagerVm.back}}</div><div class="inherit-dim flex row-flex flex-wrap flex-center-x" ng-transclude></div>',
+            template: '<div class="stack-elements-container inherit-dim"><div class="parent-dim flex row-flex flex-wrap flex-center-y flex-center-x"> <div class="container back {{flipManagerVm.shape}}">{{flipManagerVm.back}}</div></div><div class="flex row-flex parent-dim flex-wrap flex-center-y flex-center-x" ng-transclude></div></div>',
             bindToController: {
                 shape: '@'
             }

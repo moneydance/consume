@@ -1,11 +1,6 @@
-<div class="page-container flex">
-    <div class="dashboard" >
-        <div class="flex row-flex flex-wrap flex-center-x">
-            <div ng-repeat="x in dashboardVm.dashboard_links" >
-                <span class="circle-dashboard" ui-sref="dashboard.{{x.title}}"> {{x.title}} </span>
-            </div>
-        </div>
-    </div>
-    <div ui-view class="reveal-animation main">
+<div class="dashboard" >
+    <div class="flex row-flex flex-wrap flex-center-x">
+            <span class="circle-dashboard" ui-sref="dashboard.{{x.title}}" ng-repeat="x in dashboardVm.dashboard_links"> {{x.title}} </span>
     </div>
 </div>
+<div ui-view class="reveal-animation main"></div>

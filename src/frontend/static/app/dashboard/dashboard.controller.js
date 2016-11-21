@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-
+    
     angular
         .module('consume.dashboard')
         .controller('DashboardController', DashboardController);

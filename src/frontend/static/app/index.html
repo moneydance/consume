@@ -3,29 +3,13 @@
 <head>
     <base href="/">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Consume</title>
 
     <!-- CSS -->
     <script src="https://use.typekit.net/sid2mxi.js"></script>
     <script>try{Typekit.load({async: false});}catch(e){}</script>
-    <link rel="stylesheet" href="/app/base.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
-    <div ui-router-styles>
-    </div>
-    <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="">
-</head>
-<body>
-
-    <div ui-view ng-animate-children="true" class="reveal-animation full">
-
-    </div>
-
-    <!-- Javascript -->
-
-    <!-- LIB:js -->
      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
@@ -35,6 +19,18 @@
     <script src="/app/lib/physicsjs-full.js"></script>
     <!-- app:js -->
     <script src="/app/app.module.js"></script>
+    <link rel="stylesheet" href="/app/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <div ui-router-styles></div>
+</head>
+<body>
+
+    <div ui-view ng-animate-children="true" class="reveal-animation page-container flex full">
+
+    </div>
+
+    <!-- Javascript -->
+
 
     <!-- blocks:js -->
     <script src="/app/blocks/exception/exception.module.js"></script>
