@@ -37,36 +37,45 @@
     function flipManager($animate) {
         function flipManagerDirCtrl() {
             var flipManagerVm = this;
+            flipManagerVm.backElement = angular.element('#back');
             flipManagerVm.back = "";
             flipManagerVm.selected;
             flipManagerVm.select = select;
 
-            function select(selected_flippy, back) {
-                console.log(flipManagerVm.selected);
-                flipManagerVm.selected = selected_flippy;
-                flipManagerVm.selected = back;
+            function select($event, back) {
+                flipManagerVm.selected = angular.element($event.currentTarget);
+                flipManagerVm.back = back;
                 flipadelphia();
 
                 function flipadelphia() {
-                    var selectedFront = flipManagerVm.selected;
-                    // selected back
-                    // add no hide to selected element
-                    // get position of selected element
+                    console.log(flipManagerVm.backElement);
+                    console.log(flipManagerVm.selected);
+                    var pos = flipManagerVm.selected.position();
+                    console.log(pos);
                     // move back_element to position of selected element
-                    // hide front elements
+                    flipManagerVm.backElement.css({
+                        position: "absolute",
+                        top: pos.top + "px",
+                        left: pos.left + "px"
+                    });
+                    flipManagerVm.selected.siblings().addClass('hidden').then(flip);
                     // flip
-                    selectedFront.css({
+                }
+
+                function flip(){
+                    flipManagerVm.selected.css({
                         'transform': 'rotateY(180deg)',
                         '-moz-transform': 'rotateY(180deg)',
                         '-webkit-transform': 'rotateY(180deg)'
                     });
-                    /*
-                    selectedBack.css({
+                    flipManagerVm.backElement.css({
+                        'position': 'relative',
+                        'top': '0px',
+                        'left': '0px',
                         '-moz-transform': 'rotateY(360deg)',
                         '-webkit-transform': 'rotateY(360deg)',
                         'transform': 'rotateY(360deg)'
                     });
-                    */
                 }
             }
         }
