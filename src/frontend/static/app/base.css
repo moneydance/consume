@@ -15,6 +15,7 @@
 
 .page-container{
     flex-flow: column;
+    min-height: 100vh;
 }
 
 .flex {
@@ -62,16 +63,12 @@
     height:100%;
 }
 
-.full{
-    min-height:100vh;
-    min-width:100vw;
-}
-
 .stack-elements-container {
     position: relative;
 }
 
-.stack-elements-container > * {
+
+.stack-element {
     position: absolute;
 }
 

@@ -6,8 +6,6 @@
         .directive('flipper', flipper)
         .directive('flipManager', flipManager);
 
-
-
     function flipper() {
         function flipperDirCtrl() {
             var flipVm = this;
@@ -30,7 +28,7 @@
                 front: '@',
                 back: '@'
             },
-            template: '<div class="container front {{flipVm._parent.shape}}" ng-click="flipVm._parent.select($event)">{{flipVm.front}}</div>',
+            template: '<div class="container front {{flipVm._parent.shape}}" ng-click="flipVm._parent.select($event, flipVm.back)">{{flipVm.front}}</div>',
             link: link
         };
     }
@@ -39,31 +37,24 @@
     function flipManager($animate) {
         function flipManagerDirCtrl() {
             var flipManagerVm = this;
-            flipManagerVm.flippers = new Array();
+            flipManagerVm.back = "";
             flipManagerVm.selected;
-            flipManagerVm.add = add;
             flipManagerVm.select = select;
 
-            function add(new_flippy) {
-                flipManagerVm.flippers.push(new_flippy);
-            }
-
-            function select(selected_flippy) {
+            function select(selected_flippy, back) {
                 console.log(flipManagerVm.selected);
                 flipManagerVm.selected = selected_flippy;
-                for (var i in flipManagerVm.flippers) {
-                    var flipper = flipManagerVm.flippers[i];
-                    if (i < flipManagerVm.flippers.length - 1) {
-                        $animate.addClass(flipper, 'hidden');
-                    } else {
-                        $animate.addClass(flipper, 'hidden').then(flipadelphia);
-                    }
-                }
+                flipManagerVm.selected = back;
+                flipadelphia();
 
                 function flipadelphia() {
                     var selectedFront = flipManagerVm.selected;
-                    //var selectedBack = "back";
-                    //$animate.removeClass(selectedBack, 'hidden');
+                    // selected back
+                    // add no hide to selected element
+                    // get position of selected element
+                    // move back_element to position of selected element
+                    // hide front elements
+                    // flip
                     selectedFront.css({
                         'transform': 'rotateY(180deg)',
                         '-moz-transform': 'rotateY(180deg)',
@@ -87,7 +78,7 @@
             scope: {},
             controller: flipManagerDirCtrl,
             controllerAs: 'flipManagerVm',
-            template: '<div class="stack-elements-container inherit-dim"><div class="parent-dim flex row-flex flex-wrap flex-center-y flex-center-x"> <div class="container back {{flipManagerVm.shape}}">{{flipManagerVm.back}}</div></div><div class="flex row-flex parent-dim flex-wrap flex-center-y flex-center-x" ng-transclude></div></div>',
+            template: '<div class="stack-elements-container inherit-dim"><div class="stack-element parent-dim flex row-flex flex-wrap flex-center-y flex-center-x"> <div id="back" class="container back {{flipManagerVm.shape}}">{{flipManagerVm.back}}</div></div><div class="flex row-flex parent-dim flex-wrap flex-center-y flex-center-x" ng-transclude></div></div>',
             bindToController: {
                 shape: '@'
             }
