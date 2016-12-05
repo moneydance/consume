@@ -2,5 +2,7 @@
     'use strict';
 
     angular
-    .module('consume.login', []);
+    .module('consume.dashboard.projects', []);
 })();
+
+

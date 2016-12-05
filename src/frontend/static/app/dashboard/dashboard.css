@@ -26,10 +26,27 @@
     padding: 14px;
     border: 2px solid #333;
     color: #333;
-    font-size: 24px;
     text-transform: uppercase;
     display: inline-block;
     cursor:pointer;
+}
+
+@media all and (min-width: 960px) {
+.dashboard span{
+    font-size: 2vw;
+  }
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+.dashboard span{
+    font-size: 3vw;
+  }
+}
+
+@media all and (max-width: 599px) and (min-width: 50px) {
+.dashboard span{
+    font-size: 4vw;
+  }
 }
 
 .circle-dashboard {
@@ -44,15 +61,6 @@
 }
 
 .container {
-    -webkit-transition: all 2s;
-    -webkit-transform-style: preserve-3d;
-    -webkit-perspective: 500px;
-    -moz-transition: all 2s;
-    -moz-transform-style: preserve-3d;
-    -moz-perspective: 500px;
-    width: 40vh;
-    height: 40vh;
-    margin: 0px 20px 40px 20px;
 }
 
 .dashboard:after{
@@ -64,8 +72,8 @@
 }
 
 .selected-display {
-    width: 60vh;
-    height:60vh;
+    width: 50vh !important;
+    height:50vh !important;
 }
 
 .no-hidden {
@@ -82,12 +90,16 @@
 .back {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    -webkit-transition: 2s;
-    -moz-transition:2s;
-    transition: 2s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-perspective: 500px;
+    -moz-transform-style: preserve-3d;
+    -moz-perspective: 500px;
 }
 
 .front {
+    -webkit-transition: 2s;
+    -moz-transition:2s;
+    transition: 2s;
     z-index: 2;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
@@ -95,6 +107,7 @@
 }
 
 .back {
+    margin: 0px 0px 0px 0px !important;
     z-index: 1;
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
@@ -106,11 +119,16 @@
     -webkit-border-radius: 50%;
     -moz-border-radius:50%;
     border: 3px solid #000;
-    text-align: center;
     cursor: pointer;
     overflow: hidden;
-}
+    width: 35vh;
+    height: 35vh;
+    margin: 20px 20px 20px 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
 
+}
 .no-flex-zone {
     width:0px;
     height:0px;

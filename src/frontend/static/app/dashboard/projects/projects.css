@@ -1,0 +1,7 @@
+.project {
+    width:35vh;
+    height:35vh;
+    cursor:pointer;
+    display: inline-block;
+    margin: 20px 20px 20px 20px;
+}

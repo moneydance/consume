@@ -4,3 +4,8 @@ physics-canvas {
     left:0;
     z-index: -1;
 }
+
+.pooz {
+   max-width:217px;
+   width:40vw;
+}

@@ -5,6 +5,6 @@
     // shared modules
     'consume.core',
     // feature modules
-    'consume.dashboard', 'consume.login'
+    'consume.dashboard'
     ]);
 })();
